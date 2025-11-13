@@ -2,7 +2,7 @@
 
 1. Descriere generală
 Aplicația permite studenților să ia notițe organizate pe materii, etichete și grupuri de studiu.
-Notițele pot include text formatat (Markdown), imagini și atașamente.
+Notițele pot include text formatat, imagini și atașamente.
 
 2. Cerințe funcționale
 - Autentificare cu cont @stud.ase.ro
@@ -13,8 +13,8 @@ Notițele pot include text formatat (Markdown), imagini și atașamente.
 - Grupuri de studiu
 
 3. Cerințe non-funcționale
-- Interfață responsive (desktop/mobil)
-- Performanță bună (<500ms)
+- Interfață responsive 
+- Performanță bună
 - Persistență sigură a datelor
 - UI în limba română
 
