@@ -11,7 +11,4 @@ Tehnologii
 - Deployment: Render / Vercel / Railway
 
 Structură planificată
-project/
- ├── frontend/
- ├── backend/
- └── docs/
+project/frontend/backend/docs/
