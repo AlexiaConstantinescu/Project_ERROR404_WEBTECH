@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
 
-const Group = sequelize.define('Group', {
+const Tag = sequelize.define('Tag', {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -12,27 +12,25 @@ const Group = sequelize.define('Group', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      len: [1, 100]
+      len: [1, 50]
     }
   },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: true
-  },
-  ownerId: {
+  userId: {
     type: DataTypes.UUID,
     allowNull: false,
     references: {
       model: 'users',
       key: 'id'
     }
-  },
-  isPrivate: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false
   }
 }, {
-  tableName: 'groups'
+  tableName: 'tags',
+  indexes: [
+    {
+      unique: true,
+      fields: ['name', 'userId']
+    }
+  ]
 });
 
-module.exports = Group;
+module.exports = Tag;
