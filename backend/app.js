@@ -5,13 +5,13 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const { sequelize } = require('./config/database');
 
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const noteRoutes = require('./routes/notes');
-const subjectRoutes = require('./routes/subjects');
-const tagRoutes = require('./routes/tags');
-const groupRoutes = require('./routes/groups');
-const attachmentRoutes = require('./routes/attachments');
+const authRoutes = require('./routes/auth.js');
+const userRoutes = require('./routes/users.js');
+const noteRoutes = require('./routes/notes.js');
+const subjectRoutes = require('./routes/subjects.js');
+const tagRoutes = require('./routes/tags.js');
+const groupRoutes = require('./routes/groups.js');
+const attachmentRoutes = require('./routes/attachements.js');
 
 const errorHandler = require('./middleware/errorHandler');
 
@@ -25,8 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     timestamp: new Date().toISOString()
   });
 });
@@ -40,9 +40,9 @@ app.use('/api/groups', groupRoutes);
 app.use('/api/attachments', attachmentRoutes);
 
 app.use((req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     success: false,
-    message: 'Endpoint not found' 
+    message: 'Endpoint not found'
   });
 });
 
