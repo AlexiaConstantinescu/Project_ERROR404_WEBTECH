@@ -2,10 +2,10 @@
   "name": "notite-studenti-backend",
   "version": "1.0.0",
   "description": "API RESTful pentru aplicație notițe studențești",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "migrate": "node src/scripts/migrate.js",
     "migrate:undo": "node src/scripts/migrate.js --undo",
     "seed": "node src/scripts/seed.js",
