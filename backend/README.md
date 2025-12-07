@@ -10,7 +10,7 @@ npm install
 Creeaza baza de date:
 ```sql
 CREATE DATABASE notite_studenti;
-CREATE USER notite_user WITH PASSWORD 'parola123';
+CREATE USER notite_user WITH PASSWORD 'parola_sigura';
 GRANT ALL PRIVILEGES ON DATABASE notite_studenti TO notite_user;
 ```
 
@@ -23,7 +23,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=notite_studenti
 DB_USER=notite_user
-DB_PASSWORD=parola123
+DB_PASSWORD=parola_sigura
 JWT_SECRET=secret_key_foarte_lung_si_sigur_12345
 ```
 
