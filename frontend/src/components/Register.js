@@ -1,0 +1,131 @@
+import React, { useState } from 'react';
+import { register } from '../api';
+import { useNavigate } from 'react-router-dom';
+
+export default function Register() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(null);
+
+        if (!email.endsWith('@stud.ase.ro')) {
+            setError('Email must be from @stud.ase.ro domain');
+            return;
+        }
+
+        try {
+            await register(name, email, password);
+            navigate('/login');
+        } catch (err) {
+            setError(err.data?.message || err.message);
+        }
+    };
+
+    return (
+        <div style={{ padding: '40px 20px', maxWidth: '500px', margin: '0 auto' }}>
+            <h2 style={{ margin: '0 0 32px', fontSize: '28px', fontWeight: 700, color: '#1f2937', textAlign: 'center' }}>📝 Create Account</h2>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', backgroundColor: 'white', padding: '32px', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+                <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: '#374151' }}>Full Name *</label>
+                    <input
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        placeholder="Your full name"
+                        style={{
+                            width: '100%',
+                            padding: '12px 16px',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box',
+                            transition: 'all 0.2s',
+                            fontFamily: 'inherit'
+                        }}
+                        onFocus={e => e.target.style.borderColor = '#3b82f6'}
+                        onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                    />
+                </div>
+                <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: '#374151' }}>Email (must be @stud.ase.ro) *</label>
+                    <input
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        placeholder="yourname@stud.ase.ro"
+                        type="email"
+                        style={{
+                            width: '100%',
+                            padding: '12px 16px',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box',
+                            transition: 'all 0.2s',
+                            fontFamily: 'inherit'
+                        }}
+                        onFocus={e => e.target.style.borderColor = '#3b82f6'}
+                        onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                    />
+                </div>
+                <div>
+                    <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: '#374151' }}>Password (min 6 characters) *</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholder="Enter a strong password"
+                        style={{
+                            width: '100%',
+                            padding: '12px 16px',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '6px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box',
+                            transition: 'all 0.2s',
+                            fontFamily: 'inherit'
+                        }}
+                        onFocus={e => e.target.style.borderColor = '#3b82f6'}
+                        onBlur={e => e.target.style.borderColor = '#d1d5db'}
+                    />
+                </div>
+                {error && (
+                    <div style={{
+                        padding: '12px 16px',
+                        backgroundColor: '#fee2e2',
+                        color: '#991b1b',
+                        borderRadius: '6px',
+                        fontWeight: 500,
+                        fontSize: '14px'
+                    }}>
+                        ❌ {error}
+                    </div>
+                )}
+                <button
+                    type="submit"
+                    style={{
+                        padding: '12px 24px',
+                        backgroundColor: '#3b82f6',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        transition: 'all 0.2s'
+                    }}
+                    onMouseOver={e => e.target.style.backgroundColor = '#2563eb'}
+                    onMouseOut={e => e.target.style.backgroundColor = '#3b82f6'}
+                >
+                    Create Account
+                </button>
+                <p style={{ textAlign: 'center', margin: '16px 0 0', fontSize: '14px', color: '#666' }}>
+                    Already have an account? <a href="/login" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Login here</a>
+                </p>
+            </form>
+        </div>
+    );
+}
